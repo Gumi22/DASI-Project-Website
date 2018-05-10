@@ -35,7 +35,7 @@ if (isset($_GET['error'])) {
     Password: <input type="password"
                      name="password"
                      id="password"/>
-    Remember me: <input type="checkbox" id="rememberme"/>
+    Remember me: <input type="checkbox" name="rememberme" id="rememberme"/>
     <input type="button"
            value="Login"
            onclick="formhash(this.form, this.form.password);"/>

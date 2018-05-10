@@ -64,7 +64,15 @@ function login($email, $password, $mysqli) {
                     $_SESSION['username'] = $username;
                     $_SESSION['login_string'] = hash('sha512',
                         $password . $user_browser);
+
                     // Login erfolgreich.
+
+                    //Setze Cookies falls rememberme aktiviert war
+                    if (isset($_POST['rememberme']) && $_POST['rememberme'] == true) {
+                        setcookie( 'Email', $_POST['email'], time() + (86400 * 90), '/DASI', 'localhost', isset($_SERVER["HTTPS"]), true);
+                        setcookie( 'PassWord', $_POST['p'], time() + (86400 * 90), '/DASI', 'localhost', isset($_SERVER["HTTPS"]), true); //evtl hash pw with Database Salt
+                    }
+
                     return true;
                 } else {
                     // Passwort ist nicht korrekt
@@ -150,6 +158,10 @@ function login_check($mysqli) {
             // Nicht eingeloggt
             return false;
         }
+    } else if(isset($_COOKIE["Email"], $_COOKIE["PassWord"])){
+        //Rememberme was set
+        return login($_COOKIE["Email"],$_COOKIE["PassWord"], $mysqli);
+
     } else {
         // Nicht eingeloggt
         return false;
