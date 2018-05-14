@@ -9,12 +9,12 @@ $_SESSION = array();
 $params = session_get_cookie_params();
 
 // Lösche das aktuelle Cookie.
-/*setcookie(session_name(),
+setcookie(session_name(),
     '', time() - 42000,
     $params["path"],
     $params["domain"],
     $params["secure"],
-    $params["httponly"]);*/
+    $params["httponly"]);
 
 if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);

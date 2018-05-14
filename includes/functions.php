@@ -1,5 +1,6 @@
 <?php
 include_once 'global-config.php';
+require_once 'google-api-php-client-2.2.1/vendor/autoload.php';
 
 function sec_session_start() {
     $session_name = 'sec_session_id';   // vergib einen Sessionnamen
@@ -90,6 +91,21 @@ function login($email, $password, $mysqli) {
     }
 }
 
+function loginGoogleAcc($token){
+    $CLIENT_ID = "1074399105236-okf5r7p6746t1p06gos1aabj5avv7po3.apps.googleusercontent.com";
+    $id_token = $token;
+
+    $client = new Google_Client(['client_id' => $CLIENT_ID]);  // Specify the CLIENT_ID of the app that accesses the backend
+    $payload = $client->verifyIdToken($id_token);
+    if ($payload) {
+        $_SESSION["Token"] = $token;
+        return true;
+    } else {
+        // Invalid ID token
+        return false;
+    }
+}
+
 function checkbrute($user_id, $mysqli) {
     // Hole den aktuellen Zeitstempel
     $now = time();
@@ -162,7 +178,10 @@ function login_check($mysqli) {
         //Rememberme was set
         return login($_COOKIE["Email"],$_COOKIE["PassWord"], $mysqli);
 
-    } else {
+    } else if(isset($_SESSION["Token"])){
+        //Google login was set
+        return loginGoogleAcc($_SESSION["Token"]);
+    }    else {
         // Nicht eingeloggt
         return false;
     }
