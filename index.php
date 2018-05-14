@@ -11,7 +11,7 @@ sec_session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pornhub</title>
 
     <link rel="stylesheet" href="https://ci.phncdn.com/www-static/css/generated-header.css?cache=2018041701"
           type="text/css"/>
@@ -634,9 +634,9 @@ sec_session_start();
                             <a href="logout.php" class="removeAdLink" id="headerLoginLink">Ausloggen</a>
                             <a href="profile.php">Profil</a>
                         <?php else : ?>
-                            <a href="login.php" class="removeAdLink" id="headerLoginLink">Einloggen Normal und Google</a>
-                            <a href="loginDigest.php" class="removeAdLink" id="headerLoginLink2">Einloggen Digest</a>
-                            <a href="register.php">Registrieren</a>
+                            <a href="login.php" class="removeAdLink" id="headerLoginLink">Login</a>
+                            <a href="loginDigest.php" class="removeAdLink" id="headerLoginLink2">Login2</a>
+                            <a href="register.php">Reg</a>
                         <?php endif; ?>
 
                     </div>
