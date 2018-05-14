@@ -1,8 +1,21 @@
 <?php
 include_once 'db_connect.php';
 include_once 'global-config.php';
+include_once 'functions.php';
+
+sec_session_start();
 
 $error_msg = "";
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    //Here we parse the form
+    if(!isset($_SESSION['csrf']) || $_SESSION['csrf'] !== $_POST['csrf']){
+        echo $_SESSION['csrf'] ;
+        echo $_POST['csrf'] ;
+        throw new RuntimeException('CSRF attack');
+    }
+
 
 if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // Bereinige und überprüfe die Daten
@@ -64,4 +77,5 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         }
         header('Location: ./register_success.php');
     }
+}
 }
