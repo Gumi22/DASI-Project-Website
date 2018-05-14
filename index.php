@@ -634,7 +634,8 @@ sec_session_start();
                             <a href="logout.php" class="removeAdLink" id="headerLoginLink">Ausloggen</a>
                             <a href="profile.php">Profil</a>
                         <?php else : ?>
-                            <a href="login.php" class="removeAdLink" id="headerLoginLink">Einloggen</a>
+                            <a href="login.php" class="removeAdLink" id="headerLoginLink">Einloggen Normal und Google</a>
+                            <a href="loginDigest.php" class="removeAdLink" id="headerLoginLink2">Einloggen Digest</a>
                             <a href="register.php">Registrieren</a>
                         <?php endif; ?>
 
